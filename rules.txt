@@ -1,0 +1,23 @@
+# Simple rules: ACTION PROTO SRC DST PORT
+# Action: allow | deny
+# Proto: tcp | udp | icmp | any
+# SRC/DST: IP, CIDR or any
+# PORT: number, range like 8000-9000 or any
+
+# Allow local network HTTP out
+allow tcp 192.168.1.0/24 any 80
+
+# Allow DNS queries (UDP) from LAN
+allow udp 192.168.1.0/24 any 53
+
+# Block a specific host from using SSH
+deny tcp 192.168.1.55 any 22
+
+# Allow HTTPS from LAN
+allow tcp 192.168.1.0/24 any 443
+
+# Deny traffic to a malicious IP
+deny any any 203.0.113.45 any
+
+# Default catch-all (optional). If present, it will be matched if reached.
+# deny any any any any
